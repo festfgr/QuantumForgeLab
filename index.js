@@ -1,6 +1,6 @@
-const gcdRecursive = (a, b) => {
-  if (b === 0) {
-    return a;
-  }
-  return gcdRecursive(b, a % b);
-};
+const flattenDepth = (arr, depth = 1) =>
+  arr.reduce(
+    (a, v) =>
+      a.concat(depth > 1 && Array.isArray(v) ? flattenDepth(v, depth - 1) : v),
+    [],
+  );
