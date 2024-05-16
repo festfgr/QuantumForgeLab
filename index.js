@@ -1,6 +1,17 @@
-const factorialRecursive = (n) => {
-  if (n === 0 || n === 1) {
-    return 1;
+function serialize(root) {
+  const result = [];
+  const queue = [root];
+  while (queue.length) {
+    const node = queue.shift();
+    if (node) {
+      result.push(node.val);
+      queue.push(node.left, node.right);
+    } else {
+      result.push(null);
+    }
   }
-  return n * factorialRecursive(n - 1);
-};
+  while (result[result.length - 1] === null) {
+    result.pop();
+  }
+  return result;
+}
