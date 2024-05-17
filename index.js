@@ -1,17 +1,13 @@
-function serialize(root) {
-  const result = [];
-  const queue = [root];
-  while (queue.length) {
-    const node = queue.shift();
-    if (node) {
-      result.push(node.val);
-      queue.push(node.left, node.right);
-    } else {
-      result.push(null);
+function lengthOfLongestSubstring(s) {
+  const map = new Map();
+  let maxLength = 0;
+  let left = 0;
+  for (let right = 0; right < s.length; right++) {
+    if (map.has(s[right])) {
+      left = Math.max(left, map.get(s[right]) + 1);
     }
+    map.set(s[right], right);
+    maxLength = Math.max(maxLength, right - left + 1);
   }
-  while (result[result.length - 1] === null) {
-    result.pop();
-  }
-  return result;
+  return maxLength;
 }
